@@ -1,0 +1,158 @@
+.payment-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #2c2c54;
+  padding: 20px;
+  border-radius: 10px;
+  width: 80%;
+  margin: auto;
+}
+
+.nav-bar {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  background-color: #2c2c54;
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.nav-item {
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.nav-bold {
+  font-weight: bold;
+}
+
+.nav-active {
+  background-color: #fbc531;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.payment-form {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.form-section {
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+}
+
+.form-title {
+  color: white;
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-label {
+  color: white;
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+.form-input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+}
+
+.amount-group {
+  display: flex;
+  align-items: center;
+}
+
+.amount-input {
+  flex: 1;
+}
+
+.currency {
+  color: white;
+  font-size: 14px;
+  margin-left: 10px;
+}
+
+.button-group {
+  display: flex;
+  justify-content: space-between;
+}
+
+.dashboard-btn, .pay-btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.dashboard-btn {
+  background-color: #fbc531;
+  color: black;
+}
+
+.pay-btn {
+  background-color: #fbc531;
+  color: black;
+}
+
+.payment-slip-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 35%;
+}
+
+.payment-slip-title {
+  color: white;
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.upload-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fbc531;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.file-input {
+  margin-bottom: 10px;
+}
+
+.upload-text {
+  color: black;
+  font-size: 14px;
+}
+.view-btn {
+  background-color: #fbc531;
+  color: black;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 25%;
+  height: 25%;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.view-btn:hover {
+  background-color: #e1a900;
+}
