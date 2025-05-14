@@ -9,6 +9,8 @@ import DeniedRequests from './components/DeniedRequests';
 import ApprovedRequests from './components/ApprovedRequests';
 import Thankyoupage from './components/Thankyoupage'
 import PaymentForm from './components/PaymentForm';
+import Resultpage from './components/Resultpage';
+import UploadVideo from './components/uploadvideo';
 
 
 function App() {
@@ -24,6 +26,8 @@ function App() {
         <Route path="/ApprovedRequests" element={<ApprovedRequests/>}/>
         <Route path="/Thank" element={<Thankyoupage/>}/>
         <Route path="/payment-form" element={<PaymentForm/>}/>
+        <Route path="/upvideo" element={<UploadVideo />} />
+        <Route path="/results" element={<Resultpage />} />
       </Routes>
     </Router>
   );

@@ -1,136 +1,240 @@
-/* General dashboard styling */
-.dashboard {
+/* ========== GENERAL STYLING ========== */
+.dashboard-ui {
   font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(to bottom right, #2a235f, #5f68b0);
+  background: linear-gradient(to bottom right, #2d2a6b, #5b68c0);
   min-height: 100vh;
-  color: white;
+  color: #ffffff;
   padding: 0;
   margin: 0;
 }
 
-/* Navbar styling */
-.navbar {
+/* ========== NAVBAR ========== */
+.dashboard-ui__navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.5rem 1.5rem;
-  background-color: #1f1a4a;
+  padding: 0.75rem 2rem;
+  background-color: #1b1640;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
 }
 
-.logo-container {
+.dashboard-ui__logo-section {
   display: flex;
   align-items: center;
 }
 
-.logo-img {
+.dashboard-ui__logo {
   width: 40px;
-  margin-right: 8px;
+  margin-right: 10px;
 }
 
-.brand-name {
+.dashboard-ui__brand {
   font-weight: bold;
-  font-size: 16px;
+  font-size: 18px;
+  letter-spacing: 1px;
 }
 
-.nav-links button {
-  margin: 0 8px;
-  padding: 6px 12px;
-  background: white;
+.dashboard-ui__nav button {
+  margin: 0 10px;
+  padding: 6px 14px;
+  background: #ffffff;
+  color: #000000;
   border: none;
   border-radius: 20px;
-  color: black;
+  font-size: 14px;
   font-weight: 500;
   cursor: pointer;
-  font-size: 14px;
+  transition: transform 0.2s ease, background 0.3s;
 }
 
-.user-profile {
+.dashboard-ui__nav button:hover {
+  background-color: #ffdc60;
+  transform: scale(1.1);
+}
+
+.dashboard-ui__user {
   display: flex;
   align-items: center;
 }
 
-.user-img {
+.dashboard-ui__avatar {
   width: 35px;
   height: 35px;
   border-radius: 50%;
-  margin-right: 6px;
+  margin-right: 8px;
 }
 
-.user-profile span {
-  font-size: 14px;
+/* ========== MAIN CONTENT ========== */
+.dashboard-ui__main {
+  padding: 2rem;
 }
 
-/* Main content styling */
-.content {
-  padding: 1.5rem;
-}
-
-/* Top section styling */
-.top-section {
+/* Top Section */
+.dashboard-ui__top {
   display: flex;
   justify-content: space-between;
-  gap: 1.5rem;
-  margin-bottom: 1.5rem;
-}
-
-.main-img {
-  width: 65%;
-  height: 400px;
-  border-radius: 16px;
-  object-fit: cover;
-
-}
-
-.calendar-box {
-  width: 35%;
-  background-color: #1f1a4a;
-  border-radius: 16px;
-  padding: 1.5rem;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
 }
 
-.calendar-box h3 {
-  margin: 0;
-  font-size: 18px;
+.dashboard-ui__hero-img {
+  width: 65%;
+  max-width: 800px;
+  border-radius: 20px;
+  object-fit: cover;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  transition: all 0.5s ease;
+  position: relative;
+  z-index: 1;
 }
 
-.calendar-img {
-  width: 60px;
+/* 24-hour glowing animation for hero image */
+@keyframes glow {
+  0%, 100% {
+    box-shadow: 0 0 20px 5px rgba(255, 215, 0, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 30px 10px rgba(255, 215, 0, 0.8);
+  }
+}
+
+.dashboard-ui__hero-img:hover {
+  animation: glow 2s infinite;
+  transform: scale(1.01);
+}
+
+.dashboard-ui__calendar-box {
+  flex: 1;
+  background-color: #1b1640;
+  border-radius: 20px;
+  padding: 2rem 1.5rem;
+  text-align: center;
+  color: white;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.dashboard-ui__calendar-box:hover {
+  transform: scale(1.03);
+}
+
+.dashboard-ui__calendar-box img {
+  width: 50px;
   margin: 10px auto;
 }
 
-.calendar-box p {
-  margin: 10px 0 0;
+.dashboard-ui__calendar-box span {
+  font-weight: 600;
   font-size: 16px;
-  font-weight: bold;
 }
 
-/* Bottom section styling */
-.bottom-section {
+.dashboard-ui__calendar-box p {
+  margin-top: 10px;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+/* Horizontal line separator */
+.dashboard-ui__divider {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.5), transparent);
+  margin: 2rem 0;
+}
+
+/* Bottom Cards */
+.dashboard-ui__cards {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
   gap: 1.5rem;
-  width: 100%;
 }
 
-.bottom-img {
-  flex: 1; /* This makes each image take equal space */
-  min-width: 0; /* Allows flex items to shrink properly */
-  height: 200px;
-  border-radius: 16px;
-  object-fit: cover;
-}
-
-.label-box {
+.dashboard-ui__card-container {
+  flex: 1;
+  min-width: 250px;
   text-align: center;
 }
 
-.label-box p {
-  margin-top: 0.5rem;
-  font-size: 14px;
-  font-weight: 500;
+.dashboard-ui__card {
+  width: 100%;
+  height: 200px;
+  border-radius: 20px;
+  object-fit: cover;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+}
+
+.dashboard-ui__card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(255, 215, 0, 0.3);
+}
+
+.dashboard-ui__card-title {
+  margin-top: 0.8rem;
+  font-size: 16px;
+  font-weight: 600;
+  color: #ffdc60;
+}
+
+/* ========== ANIMATIONS ========== */
+@keyframes fadeInLeft {
+  0% { opacity: 0; transform: translateX(-40px); }
+  100% { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fadeInRight {
+  0% { opacity: 0; transform: translateX(40px); }
+  100% { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fadeInUp {
+  0% { opacity: 0; transform: translateY(40px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fadeInLeft {
+  animation: fadeInLeft 1s ease forwards;
+}
+
+.animate-fadeInRight {
+  animation: fadeInRight 1s ease forwards;
+}
+
+.animate-fadeInUp {
+  animation: fadeInUp 1s ease forwards;
+}
+
+/* ========== CELEBRATION CONFETTI ========== */
+@keyframes confettiFall {
+  0% { transform: translateY(-100px) rotate(0deg); opacity: 0; }
+  100% { transform: translateY(100vh) rotate(720deg); opacity: 1; }
+}
+
+.confetti {
+  position: fixed;
+  top: -20px;
+  width: 10px;
+  height: 10px;
+  background-color: red;
+  animation: confettiFall 3s linear infinite;
+  opacity: 0;
+  z-index: 9999;
+  pointer-events: none;
+}
+
+/* Add a few variations */
+.confetti:nth-child(2n) {
+  background-color: yellow;
+  animation-delay: 0.2s;
+}
+.confetti:nth-child(3n) {
+  background-color: #00f;
+  animation-delay: 0.4s;
+}
+.confetti:nth-child(4n) {
+  background-color: #0f0;
+  animation-delay: 0.6s;
 }
