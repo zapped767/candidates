@@ -1,0 +1,107 @@
+.pay-app-body {
+  min-height: 100vh;
+  background-color: #f9fafb;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.pay-app-title {
+  font-size: 2rem;
+  font-weight: 700;
+  background-color: #ffffff;
+  padding: 0.75rem 2rem;
+  border-radius: 9999px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.pay-app-search {
+  margin-bottom: 1rem;
+  padding: 0.5rem 1rem;
+  width: 20rem;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  outline: none;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.pay-app-search:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+}
+
+.pay-app-container {
+  width: 100%;
+  max-width: 90rem;
+  overflow-x: auto;
+  background-color: #ffffff;
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.pay-app-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.95rem;
+}
+
+.pay-app-table thead {
+  background-color: #f3f4f6;
+  color: #374151;
+}
+
+.pay-app-table th,
+.pay-app-table td {
+  padding: 0.75rem 1rem;
+  border: 1px solid #e5e7eb;
+}
+
+.pay-app-table tbody tr:hover {
+  background-color: #f9fafb;
+  transition: background-color 0.3s;
+}
+
+.pay-app-action-btn {
+  padding: 0.4rem 0.8rem;
+  border: none;
+  border-radius: 0.375rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.pay-app-btn-approve {
+  background-color: #22c55e;
+  color: white;
+}
+
+.pay-app-btn-approve:hover {
+  background-color: #16a34a;
+}
+
+.pay-app-btn-reject {
+  background-color: #ef4444;
+  color: white;
+}
+
+.pay-app-btn-reject:hover {
+  background-color: #dc2626;
+}
+
+.pay-app-slip-link {
+  color: #2563eb;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.pay-app-empty {
+  text-align: center;
+  padding: 2rem;
+  color: #6b7280;
+}

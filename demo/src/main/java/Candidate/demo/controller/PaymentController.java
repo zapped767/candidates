@@ -102,4 +102,19 @@ public class PaymentController {
             throw new RuntimeException("Could not read file: " + filename);
         }
     }
+    @GetMapping("/pending")
+    public List<Payment> getPendingPayments() {
+        return paymentService.getByStatus("PENDING");
+    }
+
+    @PutMapping("/{id}/approve")
+    public Payment approvePayment(@PathVariable Long id) {
+        return paymentService.updateStatus(id, "APPROVED");
+    }
+
+    @PutMapping("/{id}/reject")
+    public Payment rejectPayment(@PathVariable Long id) {
+        return paymentService.updateStatus(id, "REJECTED");
+    }
+
 }

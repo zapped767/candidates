@@ -1,0 +1,55 @@
+/* MainLogin.css */
+.main-log-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  font-family: Arial, sans-serif;
+  background-color: #f5f5f5;
+}
+
+.main-log-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 40px;
+  text-transform: uppercase;
+  color: #000;
+}
+
+.main-log-buttons {
+  display: flex;
+  flex-direction: column;
+  width: 250px;
+}
+
+.main-log-btn {
+  padding: 12px 0;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  color: white;
+}
+
+.button-spacing {
+  height: 15px; /* Exact spacing between buttons */
+}
+
+.main-log-btn.candidate {
+  background-color: #4CAF50; /* Green */
+}
+
+.main-log-btn.examinar {
+  background-color: #2196F3; /* Blue */
+}
+
+.main-log-btn.admin {
+  background-color: #f44336; /* Red */
+}
+
+.main-log-btn:hover {
+  opacity: 0.9;
+}

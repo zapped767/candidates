@@ -21,6 +21,14 @@ public class SignupController {
 
     @Autowired
     private SignupRepository signupRepository; // Fixed: This should be used in login method
+    @GetMapping("/users")
+    public ResponseEntity<?> getAllUsers() {
+        try {
+            return ResponseEntity.ok(signupRepository.findAll());
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to fetch users");
+        }
+    }
 
     @PostMapping("/signup")
     public ResponseEntity<String> signupUser(@RequestBody Signup signup) {

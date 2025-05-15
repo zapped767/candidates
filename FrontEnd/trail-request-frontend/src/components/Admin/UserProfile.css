@@ -1,0 +1,159 @@
+/* General Page Styling */
+.user-profile-container {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding: 2rem;
+  background: linear-gradient(135deg, #e3f2fd, #ffffff);
+  min-height: 100vh;
+}
+
+/* Title */
+.page-title {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 1.5rem;
+}
+
+/* Search Input */
+.search-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.search-input {
+  padding: 0.7rem 1rem;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 0 0 2px rgba(33, 150, 243, 0.2);
+  width: 300px;
+  transition: box-shadow 0.3s ease;
+}
+
+.search-input:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.5);
+}
+
+.user-count {
+  font-size: 0.9rem;
+  color: #555;
+}
+
+/* Table Container */
+.user-table-container {
+  overflow-x: auto;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+}
+
+/* Table */
+.user-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 0.5rem;
+}
+
+.user-table th,
+.user-table td {
+  text-align: left;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.user-table th {
+  background: #2196f3;
+  color: white;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+/* Status Badge */
+.status-badge {
+  padding: 0.4rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  font-weight: bold;
+  display: inline-block;
+  color: #fff;
+}
+
+.status-badge.active {
+  background-color: #4caf50;
+}
+
+.status-badge.pending {
+  background-color: #ff9800;
+}
+
+.status-badge.disabled,
+.status-badge.inactive {
+  background-color: #f44336;
+}
+
+/* Action Buttons */
+.action-btn {
+  padding: 0.4rem 0.8rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  transition: background-color 0.2s ease;
+  margin-right: 0.5rem;
+}
+
+.view-btn {
+  background-color: #03a9f4;
+  color: white;
+}
+
+.view-btn:hover {
+  background-color: #0288d1;
+}
+
+.delete-btn {
+  background-color: #f44336;
+  color: white;
+}
+
+.delete-btn:hover {
+  background-color: #d32f2f;
+}
+
+/* No Results */
+.no-results {
+  text-align: center;
+  color: #888;
+  padding: 1.5rem;
+}
+
+/* Loading State */
+.loading {
+  font-size: 1.2rem;
+  color: #777;
+  text-align: center;
+  margin-top: 2rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .search-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .search-input {
+    width: 100%;
+  }
+
+  .user-table th,
+  .user-table td {
+    font-size: 0.85rem;
+    padding: 0.5rem;
+  }
+}

@@ -21,7 +21,7 @@ public class ResultService {
     @Autowired
     private ResultRepository resultRepository;
 
-    public Result saveResult(String candidateId, String candidateName, MultipartFile videoFile) throws IOException {
+    public Result saveResult(MultipartFile videoFile) throws IOException {
         // Ensure upload directory exists
         Path uploadPath = Paths.get(uploadDir);
         if (!Files.exists(uploadPath)) {
@@ -37,8 +37,7 @@ public class ResultService {
 
         // Create and save the Result entity
         Result result = new Result();
-        result.setCandidateId(candidateId);
-        result.setCandidateName(candidateName);
+
         result.setVideoPath(filePath.toString());
 
         return resultRepository.save(result);

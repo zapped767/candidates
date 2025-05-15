@@ -25,6 +25,7 @@ public class Payment {
     private String location;
 
     private Double amount;
+    private String status;
 
     @Lob
     private String paymentSlipPath;

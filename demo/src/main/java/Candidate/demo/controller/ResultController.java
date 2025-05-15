@@ -17,10 +17,8 @@ public class ResultController {
 
     @PostMapping("/upload")
     public Result uploadResult(
-            @RequestParam("candidateId") String candidateId,
-            @RequestParam("candidateName") String candidateName,
             @RequestParam("video") MultipartFile videoFile
     ) throws Exception {
-        return resultService.saveResult(candidateId, candidateName, videoFile);
+        return resultService.saveResult(videoFile);
     }
 }

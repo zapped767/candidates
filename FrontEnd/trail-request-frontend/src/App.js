@@ -1,23 +1,31 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import TrailRequestForm from './components/TrailRequestForm';
-import SignupForm from './components/SignupForm';
-import LoginPage from './components/LoginPage';
-import Dashboard from './components/dashboard';
-import PendingRequests from './components/PendingRequests';
-import DeniedRequests from './components/DeniedRequests';
-import ApprovedRequests from './components/ApprovedRequests';
-import Thankyoupage from './components/Thankyoupage'
-import PaymentForm from './components/PaymentForm';
-import Resultpage from './components/Resultpage';
-import UploadVideo from './components/uploadvideo';
-
+import TrailRequestForm from './components/Candidates/TrailRequestForm';
+import SignupForm from './components/Candidates/SignupForm';
+import LoginPage from './components/Candidates/LoginPage';
+import Dashboard from './components/Candidates/dashboard';
+import PendingRequests from './components/Admin/PendingRequests';
+import DeniedRequests from './components/Admin/DeniedRequests';
+import ApprovedRequests from './components/Admin/ApprovedRequests';
+import Thankyoupage from './components/Candidates/Thankyoupage';
+import PaymentForm from './components/Candidates/PaymentForm';
+import Resultpage from './components/Admin/Resultpage';
+import UploadVideo from './components/Examiner/uploadvideo';
+import Payment from './components/Admin/pendingPayment';
+import PaymentApproval from './components/Admin/PaymentApproval';
+import RejectPayment from './components/Admin/RejectPayment';
+import MainLog from './components/Admin/mainLog';
+import ConfirmRequests from './components/Candidates/confirmation';
+import AdminLogin from './components/Admin/LoginPanel';
+import AdminDashboard from './components/Admin/AdminDashboard';
+import UserProfile from './components/Admin/UserProfile';
 
 function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<SignupForm />} />
+        <Route path="/" element={<MainLog />} />
+        <Route path="/signup" element={<SignupForm />} />
         <Route path="/trail-request" element={<TrailRequestForm />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/Dashboard" element={<Dashboard/>}/>
@@ -28,6 +36,14 @@ function App() {
         <Route path="/payment-form" element={<PaymentForm/>}/>
         <Route path="/upvideo" element={<UploadVideo />} />
         <Route path="/results" element={<Resultpage />} />
+        <Route path="/pending-payment" element={<Payment/>}/>
+        <Route path="/aproval-payment" element={<PaymentApproval/>}/>
+        <Route path="/reject-payment" element={<RejectPayment/>}/>
+        <Route path="/ConfirmationRequest" element={<ConfirmRequests/>}/>
+        <Route path="/Adminlogin" element={<AdminLogin/>}/>
+        <Route path="/Admin-Dash" element={<AdminDashboard/>}/>
+        <Route path="/User-Profile" element={<UserProfile/>}/>
+
       </Routes>
     </Router>
   );

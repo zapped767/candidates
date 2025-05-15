@@ -1,0 +1,117 @@
+/* Admin Dashboard Styles */
+.admin-dashboard {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: #f5f7fa;
+}
+
+/* Top Navigation Bar */
+.admin-navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2rem;
+  height: 60px;
+  background-color: #2c3e50;
+  color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.logout-button {
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.logout-button:hover {
+  background-color: #c0392b;
+}
+
+/* Dashboard Layout */
+.dashboard-container {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+/* Sidebar Styles */
+.sidebar {
+  width: 250px;
+  background-color: #34495e;
+  color: white;
+  padding: 1rem 0;
+  overflow-y: auto;
+}
+
+.sidebar-menu {
+  display: flex;
+  flex-direction: column;
+}
+
+.menu-item {
+  padding: 0.8rem 1.5rem;
+  text-align: left;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.menu-item:hover {
+  background-color: #2c3e50;
+}
+
+.menu-item.active {
+  background-color: #2980b9;
+}
+
+.menu-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+.sub-menu {
+  padding-left: 1rem;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.sub-menu-item {
+  padding: 0.6rem 1rem;
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  color: #ecf0f1;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.sub-menu-item:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.sub-menu-item.active {
+  background-color: #3498db;
+  font-weight: 500;
+}
+
+/* Main Content Area */
+.dashboard-content {
+  flex: 1;
+  padding: 2rem;
+  overflow-y: auto;
+  background-color: white;
+}
