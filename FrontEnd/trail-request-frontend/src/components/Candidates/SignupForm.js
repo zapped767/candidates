@@ -38,7 +38,12 @@ function SignupForm() {
     if (response.ok) {
       const result = await response.text();
       alert(result);
+      
+
+      localStorage.setItem('userNIC', formData.nic);
       navigate('/Login');
+
+
     } else {
       alert("Signup failed. Please try again.");
     }

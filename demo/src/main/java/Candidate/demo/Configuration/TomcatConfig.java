@@ -1,4 +1,4 @@
-package com.example.Backend.configuration;
+package Candidate.demo.Configuration;
 
 import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
 import org.springframework.boot.web.server.WebServerFactoryCustomizer;

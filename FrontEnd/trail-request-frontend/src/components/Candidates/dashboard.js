@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect,useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Dashboard.css';
 
@@ -21,6 +21,8 @@ import confetti from 'canvas-confetti';
 function Dashboard() {
   const navigate = useNavigate();
 
+  
+
   useEffect(() => {
     // Initial confetti burst
     confetti({
@@ -28,6 +30,9 @@ function Dashboard() {
       spread: 80,
       origin: { y: 0.6 },
       colors: ['#ff5e5e', '#ffdc60', '#88ff60', '#60b3ff', '#d460ff']
+      
+
+
     });
 
     // Continuous subtle confetti
@@ -43,6 +48,13 @@ function Dashboard() {
 
     return () => clearInterval(glowInterval);
   }, []);
+  const [userNIC, setUserNIC] = useState('');
+
+useEffect(() => {
+  const nic = localStorage.getItem('userNIC');
+  if (nic) setUserNIC(nic);
+}, []);
+
 
   return (
     <div className="dashboard">
@@ -57,7 +69,11 @@ function Dashboard() {
           <button onClick={() => navigate('/payment-form')}>Payment</button>
           <button onClick={() => navigate('/view-results')}>Results</button>
           <button onClick={() => navigate('/about-us')}>About Us</button>
+          <button className="user-nic">User ID: {userNIC}</button>
         </div>
+
+
+
         <button className="nav-logout" onClick={() => navigate('/login')}>Logout</button>
       </nav>
 
