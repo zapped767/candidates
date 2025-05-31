@@ -1,8 +1,16 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import './TrailRequestForm.css';
+import { useNavigate } from 'react-router-dom';
+
+
+
 
 const TrailRequestForm = () => {
+  
+  const [userNIC, setUserNIC] = useState('');
+
+
   const [formData, setFormData] = useState({
     lPermitDate: '',
     drivingSchoolName: '',
@@ -22,7 +30,7 @@ const TrailRequestForm = () => {
     medicalFront: null,
     medicalBack: null,
   });
-
+    
   const handleChange = (e) => {
     const { name, value, files } = e.target;
 
@@ -43,6 +51,7 @@ const TrailRequestForm = () => {
     }
   };
 
+ 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const payload = new FormData();
@@ -74,6 +83,28 @@ const TrailRequestForm = () => {
       alert('Failed to submit trail request. Please try again.');
     }
   };
+  const handlenic = async (e) => {
+    e.preventDefault();
+    // send form data with NIC
+    try {
+      const res = await axios.post('http://localhost:8080/api/trail-request', {
+        nic: userNIC,
+        // add other form fields here
+      });
+      alert('Trail request submitted successfully');
+    } catch (error) {
+      console.error('Error submitting request:', error);
+      alert('Submission failed');
+    }
+  };
+  useEffect(() => {
+    const nic = localStorage.getItem('userNIC');
+    if (nic) {
+      setUserNIC(nic);
+    }
+  }, []);
+
+
 
   useEffect(() => {
     return () => {
@@ -86,6 +117,7 @@ const TrailRequestForm = () => {
   const handleViewPdf = (url) => {
     if (url) window.open(url, '_blank');
   };
+  const navigate = useNavigate();
 
   return (
     <div className="trail-form-container">
@@ -101,7 +133,17 @@ const TrailRequestForm = () => {
         <div className="form-section">
           <div className="section-title">L Permit Guide</div>
           <div className="form-group">
+            <label onClick={handlenic}>NIC</label>
+            <input
+            type="text"
+            id="nic"
+            value={userNIC}
+            readOnly
+            className="read-only-nic"
+          />
+
             <label>Driving School Name</label>
+            
             <input
               type="text"
               name="drivingSchoolName"
@@ -202,14 +244,14 @@ const TrailRequestForm = () => {
           <button 
             type="button" 
             className="secondary-btn"
-            onClick={() => window.location.href = '/dashboard'}
+            onClick={() => navigate('/dashboard')}
           >
             Dashboard
           </button>
           <button 
             type="submit" 
             className="primary-btn"
-            onClick={() => window.location.href = '/Thank'}
+            onClick={() => navigate("/Thank")}
           >
             SUBMIT
           </button>

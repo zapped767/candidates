@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import './paymentapproval.css';
 
 const RejectPayment = () => {
   const [payments, setPayments] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchPendingPayments();
@@ -19,15 +21,7 @@ const RejectPayment = () => {
     }
   };
 
-  const handleReject = async (id) => {
-    try {
-      const response = await axios.put(`http://localhost:8080/api/payments/${id}/reject`);
-      setPayments(payments.filter(p => p.id !== id));
-    } catch (err) {
-      console.error('Error rejecting payment:', err);
-    }
-  };
-
+  
   const handleViewSlip = (filename) => {
     window.open(`http://localhost:8080/api/payments/files/${filename}`, '_blank');
   };
@@ -38,7 +32,37 @@ const RejectPayment = () => {
 
   return (
     <div className="pay-app-body">
-      <h2 className="pay-app-title">Reject Pending Payments</h2>
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'flex-end',
+          marginBottom: '10px'
+        }}
+      >
+        <button
+          style={{
+            padding: '8px 16px',
+            backgroundColor: '#1976d2',
+            color: 'white',
+            border: 'none',
+            borderRadius: '4px',
+            position: 'fixed',
+            top: '10px',
+            right: '10px',
+            zIndex: 1000,
+            fontWeight: 'bold',
+            cursor: 'pointer',
+            transition: 'background-color 0.3s ease'
+          }}
+          onClick={() => navigate('/Admin-Dash')}
+          onMouseOver={e => (e.currentTarget.style.backgroundColor = '#115293')}
+          onMouseOut={e => (e.currentTarget.style.backgroundColor = '#1976d2')}
+        >
+          Admin Dashboard
+        </button>
+      </div>
+
+      <h2 className="pay-app-title">Reject Payments</h2>
 
       <input
         type="text"
@@ -57,7 +81,7 @@ const RejectPayment = () => {
               <th>Email</th>
               <th>Amount</th>
               <th>Slip</th>
-              <th>Reject</th>
+              
             </tr>
           </thead>
           <tbody>
@@ -72,17 +96,24 @@ const RejectPayment = () => {
                     <button
                       className="pay-app-link"
                       onClick={() => handleViewSlip(payment.paymentSlipPath)}
+                       style={{
+                        color: '#065f46',
+                        backgroundColor: '#d1fae5',
+                        border: '1px solid #10b981',
+                        borderRadius: '6px',
+                        padding: '6px 12px',
+                        cursor: 'pointer',
+                        fontWeight: '500',
+                        transition: 'all 0.2s',
+                        ':hover': {
+                          backgroundColor: '#a7f3d0'
+                        }
+                      }}
                     >
                       View Slip
                     </button>
                   </td>
-                  <td>
-                    <button
-                      className="pay-app-button reject"
-                    >
-                      Reject
-                    </button>
-                  </td>
+                  
                 </tr>
               ))
             ) : (

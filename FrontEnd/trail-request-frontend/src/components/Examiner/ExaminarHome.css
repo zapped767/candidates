@@ -1,0 +1,142 @@
+/* ExamHome.css */
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #f4f7fa;
+  color: #333;
+  height: 100vh;
+}
+
+.exam-home-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.exam-home-header {
+  background-color: #0056b3;
+  color: white;
+  text-align: center;
+  padding: 40px 20px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  z-index: 2;
+  position: relative;
+}
+
+.exam-home-header h1 {
+  font-size: 36px;
+  margin-bottom: 10px;
+}
+
+.exam-home-header p {
+  font-size: 18px;
+  opacity: 0.9;
+}
+
+.exam-home-content {
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 60px 30px;
+  gap: 60px; /* increased spacing between cards */
+
+  background-image: url('/src/assets/Ex1.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  position: relative;
+  z-index: 1;
+}
+
+
+.logout-btn {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  background-color: #ffffff;
+  color: rgb(15, 1, 1);
+  padding: 10px 20px;
+  border: none;
+  border-radius: 25px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.logout-btn:hover {
+  background-color: #d9363e;
+}
+
+.exam-card {
+  background-color: #ffffff72;
+  border-radius: 10px;
+  border-color: #0b0101;
+  box-shadow: 0 6px 14px rgba(119, 33, 33, 0.12);
+  padding: 100px 100px; /* increased padding */
+  width: 350px; /* increased card width */
+  text-align: center;
+  transition: transform 0.3s ease;
+  height: 400px;
+}
+
+.icon {
+  font-size: 100px; /* bigger icon */
+  display: block;
+  margin-bottom: 20px;
+}
+
+.exam-card h2 {
+  font-size: 26px; /* larger heading */
+  margin-bottom: 15px;
+  color: #0056b3;
+}
+
+.exam-card p {
+  font-size: 18px; /* larger paragraph text */
+  margin-bottom: 25px;
+  color: #555;
+}
+
+.primary-btn,
+.secondary-btn {
+  padding: 12px 25px;
+  font-size: 16px;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 100%;
+}
+
+
+.primary-btn {
+  background-color: #0056b3;
+  color: white;
+}
+
+.primary-btn:hover {
+  background-color: #004099;
+}
+
+.secondary-btn {
+  background-color: #004099;
+  color: #ffffff;
+}
+
+.secondary-btn:hover {
+  background-color: #004099;
+}
+
+@media (max-width: 768px) {
+  .exam-home-content {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .exam-card {
+    width: 90%;
+  }
+}

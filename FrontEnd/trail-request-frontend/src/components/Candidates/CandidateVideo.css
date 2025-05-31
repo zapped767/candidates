@@ -1,0 +1,79 @@
+.video-container {
+  max-width: 700px;
+  margin: 50px auto;
+  padding: 30px;
+  background: linear-gradient(145deg, #ffffff, #f0f0f0);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  border-radius: 20px;
+  text-align: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.video-title {
+  font-size: 28px;
+  margin-bottom: 25px;
+  color: #333;
+}
+
+.input-group {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.candidate-input {
+  padding: 10px 15px;
+  font-size: 16px;
+  width: 260px;
+  border-radius: 10px;
+  border: 2px solid #ccc;
+  transition: 0.3s ease;
+}
+
+.candidate-input:focus {
+  border-color: #0077ff;
+  outline: none;
+}
+
+.search-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #0077ff;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.search-button:hover {
+  background-color: #005fc1;
+}
+
+.error-message {
+  color: #ff4444;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.result-container {
+  margin-top: 30px;
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: inset 0 0 10px #ddd;
+}
+
+.result-container h3,
+.result-container h4 {
+  margin: 10px 0;
+  color: #444;
+}
+
+.candidate-video {
+  margin-top: 15px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}

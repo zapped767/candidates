@@ -15,8 +15,20 @@ public class SecurityConfig {
         http
                 .cors().and()
                 .csrf().disable()
+                .headers(headers -> headers
+                        .frameOptions(frameOptions -> frameOptions.disable()) // ❗️Disable X-Frame-Options
+                )
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/auth/**").permitAll()
+                        .requestMatchers(
+                                "/api/auth/**",
+                                "/api/trail-request/**",
+                                "/api/trail-request/accepted",
+                                "/api/trail-request/signup-with-approvals",
+                                "/api/payments",
+                                "/api/payments/**",
+                                "api/results/upload",
+                                "api/results/**"
+                        ).permitAll()
                         .requestMatchers("/api/users/**").hasRole("ADMIN")
                         .anyRequest().authenticated()
                 )

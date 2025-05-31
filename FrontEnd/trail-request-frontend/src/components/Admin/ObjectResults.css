@@ -1,0 +1,95 @@
+.object-result-container {
+  animation: objectFadeInUp 1s ease forwards;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #f0f4ff, #e2f0ff);
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+  max-width: 95%;
+  margin: 0 auto;
+  transition: all 0.4s ease-in-out;
+}
+
+.object-result-container h2 {
+  font-size: 2.2rem;
+  text-align: center;
+  margin-bottom: 20px;
+  background: linear-gradient(to right, #3f51b5, #2196f3);
+  /* -webkit-background-clip: text; */
+  -webkit-text-fill-color: transparent;
+  animation: objectFadeIn 1.2s ease;
+}
+
+.object-result-table-wrapper {
+  overflow-x: auto;
+}
+
+.object-result-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #ffffff;
+  border-radius: 12px;
+  overflow: hidden;
+  animation: objectSlideIn 1s ease-in-out;
+}
+
+.object-result-table th,
+.object-result-table td {
+  padding: 16px 12px;
+  text-align: center;
+  border-bottom: 1px solid #eaeaea;
+  font-size: 1rem;
+  transition: background 0.3s ease;
+}
+
+.object-result-table th {
+  background: #1976d2;
+  color: #ffffff;
+}
+
+.object-result-table tr:hover {
+  background-color: #f0f8ff;
+  transform: scale(1.01);
+}
+
+.object-result-table video {
+  border-radius: 8px;
+  transition: transform 0.4s ease;
+}
+
+.object-result-table video:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+/* Animations */
+@keyframes objectFadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes objectSlideIn {
+  0% {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes objectFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

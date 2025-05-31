@@ -22,7 +22,7 @@ const AutoVanoeInterface = () => {
       <main className="av-main-content">
         <h1 className="av-thank-you">Thank You For Applying Trail Session!</h1>
         <div className="av-dashboard">
-          <h2 className="av-dashboard-title">Dashboard</h2>
+          <h2 className="av-dashboard-title">Automated Driving Trail Testing System</h2>
           {/* Dashboard content would go here */}
         </div>
       </main>

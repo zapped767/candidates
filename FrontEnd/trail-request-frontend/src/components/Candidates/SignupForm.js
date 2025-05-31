@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './SignupForm.css'
+import './SignupForm.css';
 import { useNavigate } from 'react-router-dom';
 
 function SignupForm() {
@@ -14,38 +14,45 @@ function SignupForm() {
   const navigate = useNavigate();
 
   const handleChange = (e) => {
-    setFormData({...formData, [e.target.name]: e.target.value});
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     if (formData.password !== formData.confirmPassword) {
       alert("Passwords do not match!");
       return;
     }
 
-    const response = await fetch("http://localhost:8080/api/auth/signup", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        name: formData.name,
-        nic: formData.nic,
-        email: formData.email,
-        password: formData.password
-      })
-    });
+    try {
+      const response = await fetch("http://localhost:8080/api/auth/signup", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: formData.name,
+          nic: formData.nic,
+          email: formData.email,
+          password: formData.password
+        })
+      });
 
-    if (response.ok) {
-      const result = await response.text();
-      alert(result);
-      
+      if (response.ok) {
+        const result = await response.text();
+        alert(result);
 
-      localStorage.setItem('userNIC', formData.nic);
-      navigate('/Login');
+        // Save credentials to localStorage for autofill
+        localStorage.setItem('userNIC', formData.nic);
+        localStorage.setItem('userName', formData.name);
+        localStorage.setItem('userEmail', formData.email);
 
-
-    } else {
-      alert("Signup failed. Please try again.");
+        navigate('/Login');
+      } else {
+        alert("Signup failed. Please try again.");
+      }
+    } catch (error) {
+      console.error("Signup error:", error);
+      alert("Something went wrong during signup.");
     }
   };
 

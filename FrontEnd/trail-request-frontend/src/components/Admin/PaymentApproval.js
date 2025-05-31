@@ -41,12 +41,39 @@ const PaymentApproval = () => {
     window.open(`http://localhost:8080/api/payments/files/${filename}`, '_blank');
   };
 
+  const handleAdminDashboardClick = () => {
+    window.location.href = '/Admin-Dash';
+  };
+
   const filteredPayments = payments.filter(p =>
     p.candidateName.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
+  // Inline style for AdminDashboard button
+  const adminDashboardButtonStyle = {
+    position: 'absolute',
+    top: '20px',
+    right: '20px',
+    backgroundColor: '#007bff',
+    color: 'white',
+    border: 'none',
+    padding: '8px 16px',
+    cursor: 'pointer',
+    borderRadius: '4px',
+    fontWeight: 'bold',
+  };
+
   return (
-    <div className="pay-app-body">
+    <div className="pay-app-body" style={{ position: 'relative', paddingTop: '60px' }}>
+      <button
+        style={adminDashboardButtonStyle}
+        onClick={handleAdminDashboardClick}
+        onMouseOver={(e) => (e.currentTarget.style.backgroundColor = '#0056b3')}
+        onMouseOut={(e) => (e.currentTarget.style.backgroundColor = '#007bff')}
+      >
+        AdminDashboard
+      </button>
+
       <h2 className="pay-app-title">Approved Payments</h2>
 
       <input
@@ -79,20 +106,16 @@ const PaymentApproval = () => {
                   <td className="text-center">{payment.amount}</td>
                   <td className="text-center">
                     <button
-                className="pending-button view"
-                onClick={() => handleViewSlip(payment.paymentSlipPath)}
-              >
-                View Slip
-              </button>
+                      className="pending-button view"
+                      onClick={() => handleViewSlip(payment.paymentSlipPath)}
+                    >
+                      View Slip
+                    </button>
                   </td>
                   <td className="text-center">
-                    <button
-                      className="pay-app-action-btn pay-app-btn-approve"
-                
-                    >
+                    <button className="pay-app-action-btn pay-app-btn-approve">
                       Approved
                     </button>
-                    
                   </td>
                 </tr>
               ))

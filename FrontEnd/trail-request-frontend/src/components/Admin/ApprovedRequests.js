@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+
+
+
 
 const ApprovedRequests = () => {
   const [approvedRequests, setApprovedRequests] = useState([]);
@@ -14,6 +18,7 @@ const ApprovedRequests = () => {
   useEffect(() => {
     fetchApprovedRequests();
   }, []);
+  const navigate=useNavigate();
 
   const fetchApprovedRequests = async () => {
     try {
@@ -36,7 +41,7 @@ const ApprovedRequests = () => {
     if (!filePath) return;
     const filename = filePath.split(/[/\\]/).pop();
     const fullUrl = `http://localhost:8080/api/trail-request/files/${filename}`;
-  
+
     setPdfPreview({
       show: true,
       url: fullUrl,
@@ -53,6 +58,9 @@ const ApprovedRequests = () => {
   const filteredRequests = approvedRequests.filter(req =>
     req.drivingSchoolName?.toLowerCase().includes(searchTerm.toLowerCase())
   );
+  const handleAdminDashboard = () => {
+    navigate('/Admin-Dash');
+  };
 
   if (loading) {
     return (
@@ -129,6 +137,27 @@ const ApprovedRequests = () => {
           />
         </div>
       </div>
+
+      <button
+  type="button"
+  onClick={handleAdminDashboard}
+  style={{
+    position: 'fixed',
+    top: '20px',
+    right: '20px',
+    backgroundColor: '#6366f1',
+    color: 'white',
+    padding: '10px 20px',
+    border: 'none',
+    borderRadius: '6px',
+    cursor: 'pointer',
+    fontWeight: '500',
+    zIndex: 1000,
+    boxShadow: '0 2px 8px rgba(0,0,0,0.15)'
+  }}
+>
+  Admin Dashboard
+</button>
 
       <div style={{
         overflowX: 'auto',
@@ -211,7 +240,7 @@ const ApprovedRequests = () => {
                 </td>
                 <td style={{ padding: '12px' }}>
                   <button
-                    onClick={() => handleViewPdf(req.lpermitPath,'L-Permit')}
+                    onClick={() => handleViewPdf(req.lpermitPath, 'L-Permit')}
                     style={{
                       color: '#92400e',
                       backgroundColor: '#fef3c7',

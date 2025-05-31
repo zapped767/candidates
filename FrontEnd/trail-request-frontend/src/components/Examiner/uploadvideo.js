@@ -7,10 +7,11 @@ import "./UploadVideo.css";
 
 const UploadVideo = () => {
   const [video, setVideo] = useState(null);
-  const [videoFile, setVideoFile] = useState(null); 
+  const [videoFile, setVideoFile] = useState(null);
   const [model, setModel] = useState(null);
   const [objectsDetected, setObjectsDetected] = useState([]);
-  
+  const [candidateName, setCandidateName] = useState('');
+  const [candidateId, setCandidateId] = useState('');
 
   const videoRef = useRef();
   const canvasRef = useRef();
@@ -19,7 +20,7 @@ const UploadVideo = () => {
   const handleVideoUpload = (e) => {
     const file = e.target.files[0];
     setVideo(URL.createObjectURL(file));
-    setVideoFile(file); 
+    setVideoFile(file);
   };
 
   const loadModel = async () => {
@@ -81,67 +82,120 @@ const UploadVideo = () => {
     }));
 
     const formData = new FormData();
-    
+    formData.append('candidate_name', candidateName);
+    formData.append('candidate_id', candidateId);
     formData.append("video", videoFile);
 
     try {
       await axios.post("http://localhost:8080/api/results/upload", formData);
       navigate("/results", { state: { results: responseData } });
-      alert("Succefully Detected")
+      alert("Successfully Detected");
     } catch (error) {
       console.error("Upload failed", error);
       alert("Upload failed: " + error.message);
     }
   };
 
+  const goToHome = () => {
+    navigate("/Exam-Home");
+  };
+
   return (
-  <div className="video-upload-page">  
-  <h2 className="upvideo-title">Object Detection Panel</h2>
+    <div className="video-upload-page">
+      {/* Top-right Home Button */}
+      <button
+  onClick={goToHome}
+  style={{
+    position: 'absolute',
+    top: '20px',
+    right: '20px',
+    padding: '10px 20px',
+    background: '#1a73e8',
+    color: '#ffffff',
+    border: 'none',
+    borderRadius: '25px',
+    fontSize: '0.9rem',
+    fontWeight: '600',
+    letterSpacing: '1px',
+    boxShadow: '0 4px 12px rgba(0, 0, 0, 0.2)',
+    textTransform: 'uppercase',
+    cursor: 'pointer',
+    zIndex: 2,
+    transition: 'all 0.3s ease-in-out',
+  }}
+  onMouseOver={(e) => {
+    e.target.style.background = '#fbbc04';
+    e.target.style.color = '#1a1c20';
+  }}
+  onMouseOut={(e) => {
+    e.target.style.background = '#1a73e8';
+    e.target.style.color = '#ffffff';
+  }}
+>
+  Examinar Home
+</button>
 
-  <div className="upvideo-body">
-    
-    
-    <input
-      type="file"
-      accept="video/*"
-      onChange={handleVideoUpload}
-      className="upvideo-input"
-    />
-    <br />
 
-    {video && (
-      <div className="upvideo-video-container">
-        <video
-          ref={videoRef}
-          src={video}
-          width="640"
-          height="480"
-          style={{ display: "block" }}
-          onLoadedData={loadModel}
+      <h2 className="upvideo-title">Object Detection Panel</h2>
+
+      <div className="upvideo-body">
+        <input
+          type="text"
+          placeholder="Candidate Name"
+          value={candidateName}
+          onChange={(e) => setCandidateName(e.target.value)}
+          className="upvideo-input"
         />
-        <canvas
-          ref={canvasRef}
-          width="640"
-          height="300"
-          className="upvideo-canvas"
+        <br />
+
+        <input
+          type="text"
+          placeholder="Candidate ID"
+          value={candidateId}
+          onChange={(e) => setCandidateId(e.target.value)}
+          className="upvideo-input"
         />
-      </div>
-    )}
+        <br />
+        <input
+          type="file"
+          accept="video/*"
+          onChange={handleVideoUpload}
+          className="upvideo-input"
+        />
+        <br />
 
-    {video && (
-      <div className="upvideo-controls">
-        <button className="upvideo-button" onClick={startDetection}>
-          START
-        </button>
-        <button className="upvideo-button" onClick={handleEnd}>
-          END
-        </button>
-      </div>
-    )}
-  </div>
-  </div>
-);
+        {video && (
+          <div className="upvideo-video-container">
+            <video
+              ref={videoRef}
+              src={video}
+              width="640"
+              height="480"
+              style={{ display: "block" }}
+              onLoadedData={loadModel}
+            />
+            <canvas
+              ref={canvasRef}
+              width="640"
+              height="300"
+              className="upvideo-canvas"
+            />
+          </div>
+        )}
 
+        {video && (
+          <div className="upvideo-controls">
+            <button className="upvideo-button" onClick={startDetection}>
+              START
+            </button>
+            <button className="upvideo-button" onClick={handleEnd}>
+              END
+            </button>
+          </div>
+        )}
+      </div>
+    </div>
+  );
 };
 
 export default UploadVideo;

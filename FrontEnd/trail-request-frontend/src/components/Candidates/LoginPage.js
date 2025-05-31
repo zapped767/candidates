@@ -9,7 +9,10 @@ function LoginPage() {
   const handleLoginRedirect = () => {
     navigate('/signup');
   };
-
+  const handleMain = () => {
+    // Clear any authentication tokens or user data here
+    navigate('/');
+  };
   const handleChange = (e) => {
     setLoginData({ ...loginData, [e.target.name]: e.target.value });
   };
@@ -64,6 +67,12 @@ function LoginPage() {
           />
           <button type="submit">LOGIN</button>
           <button type="button" onClick={handleLoginRedirect}>SIGNUP</button>
+          <button 
+              type="button" 
+              className="login-main-btn" 
+              onClick={handleMain}>
+              MAIN 3 LOG-IN
+            </button>
         </form>
       </div>
     </div>

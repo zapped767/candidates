@@ -262,3 +262,26 @@
     justify-content: center;
   }
 }
+
+.Dash-button{
+
+  display: flex;
+  gap: 1rem;
+  margin-left: 30rem;
+  margin-top: -2.8rem;
+  flex-wrap: wrap;
+  justify-content: center;
+
+}
+.Dash-button{
+  padding: 12px 30px;
+  background: var(--res-primary);
+  color: white;
+  border: none;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(26, 115, 232, 0.3);
+}

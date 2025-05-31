@@ -19,6 +19,15 @@ import ConfirmRequests from './components/Candidates/confirmation';
 import AdminLogin from './components/Admin/LoginPanel';
 import AdminDashboard from './components/Admin/AdminDashboard';
 import UserProfile from './components/Admin/UserProfile';
+import ExaminarLogin from './components/Examiner/ExaminarLogin';
+import ExaminarHome from './components/Examiner/ExaminarHome';
+import CandidateList from './components/Examiner/Candidatelist';
+import ExamAplication from './components/Examiner/ExamApplication';
+import View from './components/Examiner/View';
+import Allcandidates from './components/Examiner/AllCandidates';
+import Result from './components/Examiner/Result';
+import CandidateVideo from './components/Candidates/CandidateVideo';
+import ObjectResult from './components/Admin/ObjectResults';
 
 function App() {
   return (
@@ -28,7 +37,7 @@ function App() {
         <Route path="/signup" element={<SignupForm />} />
         <Route path="/trail-request" element={<TrailRequestForm />} />
         <Route path="/login" element={<LoginPage />} />
-        <Route path="/Dashboard" element={<Dashboard/>}/>
+        <Route path="/dashboard" element={<Dashboard/>}/>
         <Route path="/pending-request" element={<PendingRequests />} />
         <Route path="/denied-request" element={<DeniedRequests/>}/>
         <Route path="/ApprovedRequests" element={<ApprovedRequests/>}/>
@@ -43,8 +52,20 @@ function App() {
         <Route path="/Adminlogin" element={<AdminLogin/>}/>
         <Route path="/Admin-Dash" element={<AdminDashboard/>}/>
         <Route path="/User-Profile" element={<UserProfile/>}/>
+        <Route path="/Examo-login" element ={<ExaminarLogin/>}/>
+        <Route path="/Exam-Home" element={<ExaminarHome/>}/>
+        <Route path="/Can-list" element={<CandidateList/>}/>
+        <Route path="/Exam-App" element={<ExamAplication/>}/>
+        <Route path="/view" element={<View/>}/>
+        <Route path="/All" element={<Allcandidates/>}/>
+        <Route path="/res" element={<Result/>}/>
+        <Route path="/can-video" element={<CandidateVideo/>}/>
+        <Route path="/obj-result" element={<ObjectResult/>}/>
 
-      </Routes>
+        
+       
+        
+        </Routes>
     </Router>
   );
 }

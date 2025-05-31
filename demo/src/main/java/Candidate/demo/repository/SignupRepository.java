@@ -7,6 +7,10 @@ import java.util.Optional;
 public interface SignupRepository extends JpaRepository<Signup, Long> {
     Optional<Signup> findByName(String name);
 
+    static Optional<Signup> findAll(String id) {
+        return null;
+    }
+
     boolean existsByEmail(String email);
     Signup findByNameAndPassword(String name, String password);
 }

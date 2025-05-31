@@ -27,6 +27,8 @@ public class TrailRequest {
 
     private String status;
 
+    private String nic;
+
 //    private String status = "pending"; // default value
 }
 

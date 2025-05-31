@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-
+import { useNavigate } from 'react-router-dom';
 
 const PendingRequests = () => {
   const [requests, setRequests] = useState([]);
@@ -8,6 +8,7 @@ const PendingRequests = () => {
   const [alert, setAlert] = useState({ show: false, message: '', type: '' });
   const [pdfPreview, setPdfPreview] = useState({ show: false, url: '', title: '' });
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   const API_BASE = 'http://localhost:8080/api/trail-request';
 
@@ -26,6 +27,10 @@ const PendingRequests = () => {
       setTimeout(() => setAlert({ show: false, message: '', type: '' }), 3000);
       setLoading(false);
     }
+  };
+
+  const handleAdminDashboard = () => {
+    navigate('/Admin-Dash');
   };
 
   const handleApprove = async (id) => {
@@ -58,7 +63,7 @@ const PendingRequests = () => {
     if (!filePath) return;
     const filename = filePath.split(/[/\\]/).pop();
     const fullUrl = `http://localhost:8080/api/trail-request/files/${filename}`;
-  
+
     setPdfPreview({
       show: true,
       url: fullUrl,
@@ -77,7 +82,7 @@ const PendingRequests = () => {
 
   if (loading) {
     return (
-      <div style={{ 
+      <div style={{
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
@@ -112,13 +117,13 @@ const PendingRequests = () => {
       )}
 
       {/* Header */}
-      <h2 style={{ 
+      <h2 style={{
         fontWeight: 'bold',
         fontSize: '24px',
         marginBottom: '20px',
         textAlign: 'center'
       }}>
-        <span style={{ 
+        <span style={{
           backgroundColor: '#E0E7FF',
           padding: '8px 20px',
           borderRadius: '20px',
@@ -128,24 +133,48 @@ const PendingRequests = () => {
         </span>
       </h2>
 
-      {/* Search Bar */}
-      <div style={{ 
-        display: 'flex',
-        justifyContent: 'flex-end',
-        marginBottom: '20px'
-      }}>
-        <input
-          type="text"
-          placeholder="Search by driving school..."
-          onChange={(e) => setSearchTerm(e.target.value)}
-          style={{ 
-            padding: '8px 12px',
-            border: '1px solid #ccc',
-            borderRadius: '6px',
-            width: '300px'
-          }}
-        />
-      </div>
+      {/* Search Bar and Admin Button - Top Right */}
+<div style={{
+  display: 'flex',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+  marginBottom: '20px'
+}}>
+  <input
+    type="text"
+    placeholder="Search by driving school..."
+    onChange={(e) => setSearchTerm(e.target.value)}
+    style={{
+      padding: '8px 12px',
+      border: '1px solid #ccc',
+      borderRadius: '6px',
+      width: '300px'
+    }}
+  />
+</div>
+
+{/* Admin Dashboard Button (Top Right Corner) */}
+<button
+  type="button"
+  onClick={handleAdminDashboard}
+  style={{
+    position: 'fixed',
+    top: '20px',
+    right: '20px',
+    backgroundColor: '#6366f1',
+    color: 'white',
+    padding: '10px 20px',
+    border: 'none',
+    borderRadius: '6px',
+    cursor: 'pointer',
+    fontWeight: '500',
+    zIndex: 1000,
+    boxShadow: '0 2px 8px rgba(0,0,0,0.15)'
+  }}
+>
+  Admin Dashboard
+</button>
+
 
       {/* Requests Table */}
       <div style={{
@@ -153,13 +182,13 @@ const PendingRequests = () => {
         borderRadius: '8px',
         boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
       }}>
-        <table style={{ 
+        <table style={{
           width: '100%',
           borderCollapse: 'collapse',
           backgroundColor: 'white'
         }}>
           <thead>
-            <tr style={{ 
+            <tr style={{
               backgroundColor: '#f3f4f6',
               textAlign: 'center'
             }}>
@@ -173,15 +202,12 @@ const PendingRequests = () => {
           </thead>
           <tbody>
             {filteredRequests.map((req, index) => (
-              <tr 
-                key={req.id} 
-                style={{ 
+              <tr
+                key={req.id}
+                style={{
                   textAlign: 'center',
                   borderBottom: '1px solid #e5e7eb',
-                  backgroundColor: index % 2 === 0 ? '#f9fafb' : 'white',
-                  ':hover': {
-                    backgroundColor: '#f3f4f6'
-                  }
+                  backgroundColor: index % 2 === 0 ? '#f9fafb' : 'white'
                 }}
               >
                 <td style={{ padding: '12px' }}>{index + 1}</td>
@@ -189,100 +215,25 @@ const PendingRequests = () => {
                 <td style={{ padding: '12px' }}>{req.drivingSchoolName}</td>
                 <td style={{ padding: '12px' }}>
                   <div style={{ display: 'flex', justifyContent: 'center', gap: '8px' }}>
-                    <button
-                      onClick={() => handleViewPdf(req.medicalFrontPath, 'Medical Front')}
-                      style={{
-                        color: '#065f46',
-                        backgroundColor: '#d1fae5',
-                        border: '1px solid #10b981',
-                        borderRadius: '6px',
-                        padding: '6px 12px',
-                        cursor: 'pointer',
-                        fontWeight: '500',
-                        transition: 'all 0.2s',
-                        ':hover': {
-                          backgroundColor: '#a7f3d0'
-                        }
-                      }}
-                    >
+                    <button onClick={() => handleViewPdf(req.medicalFrontPath, 'Medical Front')} style={{ backgroundColor: '#d1fae5', border: '1px solid #10b981', borderRadius: '6px', padding: '6px 12px', cursor: 'pointer', color: '#065f46' }}>
                       MF
                     </button>
-                    <button
-                      onClick={() => handleViewPdf(req.medicalBackPath, 'Medical Back')}
-                      style={{
-                        color: '#065f46',
-                        backgroundColor: '#d1fae5',
-                        border: '1px solid #10b981',
-                        borderRadius: '6px',
-                        padding: '6px 12px',
-                        cursor: 'pointer',
-                        fontWeight: '500',
-                        transition: 'all 0.2s',
-                        ':hover': {
-                          backgroundColor: '#a7f3d0'
-                        }
-                      }}
-                    >
+                    <button onClick={() => handleViewPdf(req.medicalBackPath, 'Medical Back')} style={{ backgroundColor: '#d1fae5', border: '1px solid #10b981', borderRadius: '6px', padding: '6px 12px', cursor: 'pointer', color: '#065f46' }}>
                       MB
                     </button>
                   </div>
                 </td>
                 <td style={{ padding: '12px' }}>
-                  <button
-                    onClick={() => handleViewPdf(req.lpermitPath, 'L-Permit')}
-                    style={{
-                      color: '#92400e',
-                      backgroundColor: '#fef3c7',
-                      border: '1px solid #f59e0b',
-                      borderRadius: '6px',
-                      padding: '6px 12px',
-                      cursor: 'pointer',
-                      fontWeight: '500',
-                      transition: 'all 0.2s',
-                      ':hover': {
-                        backgroundColor: '#fde68a'
-                      }
-                    }}
-                  >
+                  <button onClick={() => handleViewPdf(req.lpermitPath, 'L-Permit')} style={{ backgroundColor: '#fef3c7', border: '1px solid #f59e0b', borderRadius: '6px', padding: '6px 12px', cursor: 'pointer', color: '#92400e' }}>
                     L
                   </button>
                 </td>
                 <td style={{ padding: '12px' }}>
                   <div style={{ display: 'flex', justifyContent: 'center', gap: '8px' }}>
-                    <button
-                      onClick={() => handleApprove(req.id)}
-                      style={{
-                        backgroundColor: '#d1fae5',
-                        color: '#065f46',
-                        border: '1px solid #10b981',
-                        borderRadius: '6px',
-                        padding: '6px 12px',
-                        cursor: 'pointer',
-                        fontWeight: '500',
-                        transition: 'all 0.2s',
-                        ':hover': {
-                          backgroundColor: '#a7f3d0'
-                        }
-                      }}
-                    >
+                    <button onClick={() => handleApprove(req.id)} style={{ backgroundColor: '#d1fae5', border: '1px solid #10b981', borderRadius: '6px', padding: '6px 12px', cursor: 'pointer', color: '#065f46' }}>
                       Approve
                     </button>
-                    <button
-                      onClick={() => handleDeny(req.id)}
-                      style={{
-                        backgroundColor: '#fee2e2',
-                        color: '#991b1b',
-                        border: '1px solid #ef4444',
-                        borderRadius: '6px',
-                        padding: '6px 12px',
-                        cursor: 'pointer',
-                        fontWeight: '500',
-                        transition: 'all 0.2s',
-                        ':hover': {
-                          backgroundColor: '#fecaca'
-                        }
-                      }}
-                    >
+                    <button onClick={() => handleDeny(req.id)} style={{ backgroundColor: '#fee2e2', border: '1px solid #ef4444', borderRadius: '6px', padding: '6px 12px', cursor: 'pointer', color: '#991b1b' }}>
                       Deny
                     </button>
                   </div>
@@ -291,14 +242,8 @@ const PendingRequests = () => {
             ))}
             {filteredRequests.length === 0 && (
               <tr>
-                <td colSpan="6" style={{ 
-                  padding: '24px',
-                  textAlign: 'center',
-                  color: '#6b7280'
-                }}>
-                  {requests.length === 0 
-                    ? 'No pending requests found' 
-                    : 'No matching requests found'}
+                <td colSpan="6" style={{ padding: '24px', textAlign: 'center', color: '#6b7280' }}>
+                  {requests.length === 0 ? 'No pending requests found' : 'No matching requests found'}
                 </td>
               </tr>
             )}

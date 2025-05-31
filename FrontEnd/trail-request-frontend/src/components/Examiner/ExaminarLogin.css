@@ -1,0 +1,77 @@
+.examinar-login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(to right, #6a11cb, #2575fc);
+  padding: 20px;
+}
+
+.examinar-login-box {
+  background: white;
+  padding: 50px 40px;
+  border-radius: 16px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 500px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.examinar-login-box h2 {
+  font-size: 32px;
+  color: #333;
+  margin-bottom: 30px;
+}
+
+.examinar-login-box label {
+  text-align: left;
+  font-size: 16px;
+  font-weight: 600;
+  color: #444;
+  margin: 15px 0 5px;
+}
+
+.examinar-login-box input {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  border: 1.8px solid #ccc;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  transition: border-color 0.3s ease;
+}
+
+.examinar-login-box input:focus {
+  border-color: #2575fc;
+  outline: none;
+}
+
+.examinar-login-box button {
+  width: 100%;
+  padding: 14px;
+  font-size: 18px;
+  background-color: #2575fc;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 10px;
+}
+
+.examinar-login-box button:hover {
+  background-color: #1a5dbd;
+}
+
+.error-message {
+  color: #d8000c;
+  background-color: #ffbaba;
+  padding: 10px;
+  border-radius: 6px;
+  margin-top: -10px;
+  margin-bottom: 20px;
+  font-size: 14px;
+}

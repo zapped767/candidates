@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom'; // <-- import useNavigate
 import './UserProfile.css';
 import axios from 'axios';
 
@@ -7,6 +8,8 @@ const UserProfile = () => {
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
   const [filteredUsers, setFilteredUsers] = useState([]);
+
+  const navigate = useNavigate(); // <-- initialize navigate
 
   // Fetch users from Spring Boot backend
   useEffect(() => {
@@ -54,75 +57,78 @@ const UserProfile = () => {
     }
   };
 
+  const handleAdminDashboardClick = () => {
+    navigate('/Admin-Dash');
+  };
+
   if (loading) {
     return <div className="loading">Loading user data...</div>;
   }
 
   return (
-    <div className="user-profile-container">
+  <div className="user-profile-container">
+    <div className="header-with-button" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
       <h1 className="page-title">User Profiles</h1>
-      
-      <div className="search-container">
-        <input
-          type="text"
-          placeholder="Search by name, email, or phone..."
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          className="search-input"
-        />
-        <span className="user-count">{filteredUsers.length} users found</span>
-      </div>
-
-      <div className="user-table-container">
-        <table className="user-table">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Full Name</th>
-              <th>Email</th>
-              <th>Mobile</th>
-              <th>Registered On</th>
-              <th>Status</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {filteredUsers.length > 0 ? (
-              filteredUsers.map(user => (
-                <tr key={user.id}>
-                  <td>{user.id}</td>
-                  <td>{user.fullName}</td>
-                  <td>{user.email}</td>
-                  <td>{user.mobileNumber || 'N/A'}</td>
-                  <td>{new Date(user.createdAt).toLocaleDateString()}</td>
-                  <td>
-                    <span className={`status-badge ${user.accountStatus?.toLowerCase() || 'active'}`}>
-                      {user.accountStatus || 'ACTIVE'}
-                    </span>
-                  </td>
-                  <td>
-                    <button className="action-btn view-btn">View</button>
-                    <button 
-                      className="action-btn delete-btn"
-                      onClick={() => handleDelete(user.id)}
-                    >
-                      Delete
-                    </button>
-                  </td>
-                </tr>
-              ))
-            ) : (
-              <tr>
-                <td colSpan="7" className="no-results">
-                  No users found matching your search criteria
-                </td>
-              </tr>
-            )}
-          </tbody>
-        </table>
-      </div>
+      <button 
+        className="admin-dashboard-btn" 
+        onClick={handleAdminDashboardClick}
+        style={{
+          padding: '8px 16px',
+          backgroundColor: '#007bff',
+          color: '#fff',
+          border: 'none',
+          borderRadius: '4px',
+          cursor: 'pointer'
+        }}
+      >
+        Admin Dashboard
+      </button>
     </div>
-  );
+    
+    <div className="search-container">
+      <input
+        type="text"
+        placeholder="Search by name, email, or phone..."
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+        className="search-input"
+      />
+      <span className="user-count">{filteredUsers.length} users found</span>
+    </div>
+
+    <div className="user-table-container">
+      <table className="user-table">
+        <thead>
+          <tr>
+            <th>NO</th>
+            <th>NIC</th>
+            <th>Full Name</th>
+            <th>Email</th>
+          </tr>
+        </thead>
+        <tbody>
+          {filteredUsers.length > 0 ? (
+            filteredUsers.map((user, index) => (
+              <tr key={user.id}>
+                <td>{index + 1}</td> {/* NO */}
+                <td>{user.nic || 'N/A'}</td> {/* NIC */}
+                <td>{user.name}</td> {/* Full Name */}
+                <td>{user.email}</td> {/* Email */}
+              </tr>
+            ))
+          ) : (
+            <tr>
+              <td colSpan="4" className="no-results">
+                No users found matching your search criteria
+              </td>
+            </tr>
+          )}
+        </tbody>
+      </table>
+    </div>
+  </div>
+);
+
 };
 
 export default UserProfile;

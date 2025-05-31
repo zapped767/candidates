@@ -69,6 +69,9 @@ const ResultPage = () => {
         <button className="Res-button" onClick={() => navigate("/upvideo")}>
           Back to Upload
         </button>
+        <button className="Dash-button" onClick={() => navigate("/Exam-Home")}>
+         Dashboard
+        </button>
       </div>
     </div>
   );

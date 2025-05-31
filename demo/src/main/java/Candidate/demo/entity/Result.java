@@ -14,7 +14,9 @@ public class Result {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String candidate_name;
 
+    private String candidate_id;
 
     private String videoPath; // store file path instead of blob
 

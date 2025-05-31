@@ -7,7 +7,7 @@ const MainLogin = () => {
 
   return (
     <div className="main-log-screen">
-      <div className="main-log-title">AUTOMATIC DRIVING TRAIL SYSTEM</div>
+      <div className="main-log-title">AUTOMATED DRIVING TRAIL TESTING SYSTEM</div>
       
       <div className="main-log-buttons">
         <button 
@@ -21,7 +21,7 @@ const MainLogin = () => {
         
         <button 
           className="main-log-btn examinar" 
-          onClick={() => navigate('/Exminer')}
+          onClick={() => navigate('/Examo-login')}
         >
           EXAMINAR LOGIN
         </button>
@@ -30,7 +30,7 @@ const MainLogin = () => {
         
         <button 
           className="main-log-btn admin" 
-          onClick={() => navigate('/Admin')}
+          onClick={() => navigate('/Adminlogin')}
         >
           ADMIN LOGIN
         </button>

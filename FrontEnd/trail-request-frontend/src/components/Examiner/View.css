@@ -1,0 +1,97 @@
+/* Background and base styles */
+.preview-body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: url('https://images.unsplash.com/photo-1617396902213-9d660b21a5b6') no-repeat center center fixed;
+  background-size: cover;
+  color: #080808;
+}
+
+/* Background and general layout */
+.preview-container {
+  min-height: 100vh;
+  padding: 40px 20px;
+  background-image: url('https://images.unsplash.com/photo-1610878180933-193ba6cfd939?auto=format&fit=crop&w=1740&q=80');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  animation: fadeIn 1s ease-in-out;
+}
+
+.preview-title {
+  font-size: 2rem;
+  color: #3f2e2e;
+  margin-bottom: 20px;
+  text-shadow: 1px 1px 5px #000;
+}
+
+/* Card style for each trail submission */
+.preview-block {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 25px;
+  width: 100%;
+  max-width: 600px;
+  margin-bottom: 30px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  animation: slideUp 0.8s ease;
+}
+
+.preview-block p {
+  margin: 10px 0;
+  font-size: 1.1rem;
+}
+
+.preview-block strong {
+  color: #ffd700;
+}
+
+/* PDF links section */
+.pdf-links a {
+  color: #00f5d4;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.pdf-links a:hover {
+  color: #00c9a7;
+  transform: translateX(5px);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes slideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .preview-block {
+    padding: 20px;
+    width: 90%;
+  }
+
+  .preview-title {
+    font-size: 1.5rem;
+  }
+}

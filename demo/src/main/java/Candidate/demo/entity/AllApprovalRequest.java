@@ -19,6 +19,10 @@ public class AllApprovalRequest {
     private String medicalFrontPath;
     private String medicalBackPath;
 
+    @ManyToOne
+    @JoinColumn(name = "nic", referencedColumnName = "nic")
+    private Signup signup;
+
     public AllApprovalRequest() {}
 
     public AllApprovalRequest(TrailRequest request) {

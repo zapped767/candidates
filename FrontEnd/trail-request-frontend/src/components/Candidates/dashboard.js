@@ -1,7 +1,7 @@
-import React, { useEffect,useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Dashboard.css';
-
+import axios from 'axios';
 import logo from '../../assets/WhatsApp Image 2025-02-17 at 14.29.29_59743a97 1.png';
 
 // Updated image imports
@@ -11,8 +11,8 @@ import card2 from '../../assets/8140054.jpg';
 import card3 from '../../assets/8222164.jpg';
 import card4 from '../../assets/8339794.jpg';
 import card5 from '../../assets/cab_driver_device_1.jpg';
-import card6 from '../../assets/new-image-1.jpg'; // example new image
-import card7 from '../../assets/new-image-2.jpg'; // example new image
+import card6 from '../../assets/new-image-1.jpg';
+import card7 from '../../assets/new-image-2.jpg';
 
 import calendar from '../../assets/new-image-1.jpg';
 
@@ -20,8 +20,18 @@ import confetti from 'canvas-confetti';
 
 function Dashboard() {
   const navigate = useNavigate();
+  const [userNIC, setUserNIC] = useState('');
+  const [isApproved, setIsApproved] = useState(false);
+  const [isPending, setIsPending] = useState(true);
+  const [refreshInterval, setRefreshInterval] = useState(null);
 
-  
+  const startStatusChecker = (nic) => {
+    const interval = setInterval(() => {
+      checkApprovalStatus(nic);
+    }, 30000); // 30 seconds
+    setRefreshInterval(interval);
+    return interval;
+  };
 
   useEffect(() => {
     // Initial confetti burst
@@ -30,9 +40,6 @@ function Dashboard() {
       spread: 80,
       origin: { y: 0.6 },
       colors: ['#ff5e5e', '#ffdc60', '#88ff60', '#60b3ff', '#d460ff']
-      
-
-
     });
 
     // Continuous subtle confetti
@@ -48,13 +55,48 @@ function Dashboard() {
 
     return () => clearInterval(glowInterval);
   }, []);
-  const [userNIC, setUserNIC] = useState('');
 
-useEffect(() => {
-  const nic = localStorage.getItem('userNIC');
-  if (nic) setUserNIC(nic);
-}, []);
+  useEffect(() => {
+    const nic = localStorage.getItem('userNIC');
+    if (nic) {
+      setUserNIC(nic);
+      checkApprovalStatus(nic);
+      const interval = startStatusChecker(nic);
+      return () => clearInterval(interval);
+    }
+  }, []);
 
+  const checkApprovalStatus = async () => {
+    try {
+      const response = await axios.get('http://localhost:8080/api/trail-request/accepted');
+      if (response.data.status === 'approved') {
+        setIsApproved(true);
+        setIsPending(false);
+        if (refreshInterval) {
+          clearInterval(refreshInterval);
+          setRefreshInterval(null);
+        }
+      } else if (response.data.status === 'denied') {
+        setIsApproved(false);
+        setIsPending(false);
+      } else {
+        setIsApproved(false);
+        setIsPending(true);
+      }
+    } catch (error) {
+      console.error('Error checking approval status:', error);
+    }
+  };
+
+  const handlePaymentClick = () => {
+    if (!isApproved) {
+      navigate('/payment-form');
+    } else if (isPending) {
+      alert('Your request is still pending approval. Please wait for admin approval.');
+    } else {
+      alert('Your request has been denied. Please contact support for more information.');
+    }
+  };
 
   return (
     <div className="dashboard">
@@ -63,16 +105,25 @@ useEffect(() => {
           <img src={logo} alt="Autovance Logo" className="nav-logo" />
           <span className="nav-title">AUTOVANCE</span>
         </div>
+
+
+
         <div className="nav-links">
           <button onClick={() => navigate('/trail-request')}>Trail Date</button>
-          <button onClick={() => navigate('/ConfirmationRequest')}>Confirm</button>
-          <button onClick={() => navigate('/payment-form')}>Payment</button>
-          <button onClick={() => navigate('/view-results')}>Results</button>
-          <button onClick={() => navigate('/about-us')}>About Us</button>
-          <button className="user-nic">User ID: {userNIC}</button>
+      
+          <button
+            onClick={handlePaymentClick}
+            
+            
+          >
+            Payment   
+          </button>
+
+          
+          <button onClick={() => navigate('/can-video')}>Results</button>
+          
+          <span className="user-nic">User ID: {userNIC}</span>
         </div>
-
-
 
         <button className="nav-logout" onClick={() => navigate('/login')}>Logout</button>
       </nav>
@@ -109,8 +160,8 @@ useEffect(() => {
               { img: card6, title: 'VIRTUAL TRAINING', route: '/virtual-training' },
               { img: card7, title: 'EXPERT TIPS', route: '/expert-tips' }
             ].map((feature, index) => (
-              <div 
-                key={index} 
+              <div
+                key={index}
                 className="feature-card"
                 onClick={() => navigate(feature.route)}
               >
@@ -125,18 +176,25 @@ useEffect(() => {
       </main>
 
       {/* Confetti decoration */}
-      {[...Array(30)].map((_, i) => (
-        <div 
-          key={i} 
-          className="confetti-particle"
-          style={{
-            left: `${Math.random() * 100}vw`,
-            animationDelay: `${Math.random() * 2}s`,
-            animationDuration: `${3 + Math.random() * 3}s`,
-            background: `hsl(${Math.random() * 360}, 100%, 70%)`
-          }} 
-        />
-      ))}
+      {[...Array(30)].map((_, i) => {
+        const left = `${Math.random() * 100}vw`;
+        const animationDelay = `${Math.random() * 2}s`;
+        const animationDuration = `${3 + Math.random() * 3}s`;
+        const background = `hsl(${Math.random() * 360}, 100%, 70%)`;
+
+        return (
+          <div
+            key={i}
+            className="confetti-particle"
+            style={{
+              left,
+              animationDelay,
+              animationDuration,
+              background
+            }}
+          />
+        );
+      })}
     </div>
   );
 }

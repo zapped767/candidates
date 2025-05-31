@@ -1,4 +1,5 @@
-import React, { useState,useNavigate } from 'react';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styles from './LoginPanel.module.css';
 
 const LoginPanel = () => {
@@ -9,7 +10,12 @@ const LoginPanel = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate();
 
+
+  const handlemain = () =>{
+    navigate('/');
+  }
   const handleChange = (e) => {
     const { name, value } = e.target;
     setCredentials(prev => ({
@@ -25,16 +31,15 @@ const LoginPanel = () => {
     
     // Simulate API call
     setTimeout(() => {
-      if (credentials.username === 'admin' && credentials.password === 'secure123') {
-        alert('Login successful! Redirecting to dashboard...');
-        // Here you would typically redirect or set auth state
+      if (credentials.username === 'admin' && credentials.password === 'secure123')
+    {
+       navigate('/Admin-Dash');
       } else {
         setError('Invalid credentials. Please try again.');
       }
       setIsLoading(false);
     }, 1500);
   };
-
   return (
     <div className={styles.loginContainer}>
       <div className={styles.glassPanel}>
@@ -45,7 +50,7 @@ const LoginPanel = () => {
             </svg>
           </div>
           <h1 className={styles.title}>Admin Portal</h1>
-          <p className={styles.subtitle}>Secure access to your dashboard</p>
+          <p className={styles.subtitle}>Automated Driving Trail Testing System</p>
         </div>
         
         <form onSubmit={handleSubmit} className={styles.loginForm}>
@@ -107,12 +112,12 @@ const LoginPanel = () => {
           </div>
           
           <div className={styles.optionsContainer}>
-            <label className={styles.rememberMe}>
+            {/* <label className={styles.rememberMe}>
               <input type="checkbox" className={styles.checkbox} />
               <span className={styles.checkmark}></span>
               Remember me
-            </label>
-            <a href="#forgot" className={styles.forgotPassword}>Forgot password?</a>
+            </label> */}
+            {/* <a href="#forgot" className={styles.forgotPassword}>Forgot password?</a> */}
           </div>
           
           <button 
@@ -130,8 +135,14 @@ const LoginPanel = () => {
         </form>
         
         <div className={styles.footer}>
-          <p className={styles.footerText}>Need help? <a href="#contact" className={styles.footerLink}>Contact support</a></p>
+          {/* <p className={styles.footerText}>Need help? <a href="#contact" className={styles.footerLink}>Contact support</a></p> */}
         </div>
+        <button 
+              type="button" 
+              className="login-main-btn" 
+              onClick={handlemain}>
+              MAIN 3 LOG-IN
+            </button>
       </div>
     </div>
   );

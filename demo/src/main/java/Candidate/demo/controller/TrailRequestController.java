@@ -1,5 +1,6 @@
 package Candidate.demo.controller;
 
+//import Candidate.demo.DTO.SignupWithApprovalDTO;
 import Candidate.demo.entity.AllApprovalRequest;
 import Candidate.demo.entity.AllDeniedRequest;
 import Candidate.demo.entity.TrailRequest;
@@ -36,7 +37,7 @@ public class TrailRequestController {
     private final String UPLOAD_DIR = Paths.get(System.getProperty("user.dir"), "uploads").toString();
     private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
-    @PostMapping
+    @PostMapping()
     public TrailRequest createRequest(
             @RequestParam("lPermitDate") String lPermitDate,
             @RequestParam("drivingSchoolName") String drivingSchoolName,
@@ -121,5 +122,17 @@ public class TrailRequestController {
             throw new RuntimeException("Could not read file: " + filename);
         }
     }
+    @GetMapping("/nic/{nic}")
+    public List<TrailRequest> getRequestsByNic(@PathVariable String nic) {
+        return service.getRequestsByNic(nic);
+    }
+
+//    @GetMapping("/signup-with-approvals")
+//    public ResponseEntity<List<SignupWithApprovalDTO>> getSignupWithApprovalData() {
+//        return ResponseEntity.ok(service.getAllSignupWithApprovals());
+//    }
+
+
+
 
 }

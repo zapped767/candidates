@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
 
 @Service
 public class ResultService {
@@ -21,7 +22,7 @@ public class ResultService {
     @Autowired
     private ResultRepository resultRepository;
 
-    public Result saveResult(MultipartFile videoFile) throws IOException {
+    public Result saveResult(String candidateName, String candidateId,MultipartFile videoFile) throws IOException {
         // Ensure upload directory exists
         Path uploadPath = Paths.get(uploadDir);
         if (!Files.exists(uploadPath)) {
@@ -38,8 +39,19 @@ public class ResultService {
         // Create and save the Result entity
         Result result = new Result();
 
+        result.setCandidate_name(candidateName);
+        result.setCandidate_id(candidateId);
+
         result.setVideoPath(filePath.toString());
 
         return resultRepository.save(result);
     }
+    public List<Result> getAllResults() {
+        return resultRepository.findAll();
+    }
+    public Result getResultByCandidateId(String candidateId) {
+        return resultRepository.findByCandidateId(candidateId);
+    }
+
+
 }
